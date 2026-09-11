@@ -1,0 +1,80 @@
+{%- style -%}
+  .cta-banner-{{ section.id }} {
+    background: rgb(var(--color-link));
+    color: #fff;
+    padding: 48px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .cta-banner-{{ section.id }}__kicker {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .cta-banner-{{ section.id }}__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    max-width: 26ch;
+    margin: 8px 0 0;
+    color: #fff;
+  }
+  .cta-banner-{{ section.id }}__btn {
+    background: #fff;
+    color: rgb(var(--color-link));
+    font-family: var(--font-heading-family);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 15px 26px;
+    flex: none;
+    text-decoration: none;
+    border: none;
+  }
+  .cta-banner-{{ section.id }}__btn:hover {
+    background: rgb(var(--color-foreground));
+    color: #fff;
+  }
+{%- endstyle -%}
+
+<div class="cta-banner-{{ section.id }}">
+  <div>
+    {%- if section.settings.kicker != blank -%}
+      <div class="cta-banner-{{ section.id }}__kicker">{{ section.settings.kicker }}</div>
+    {%- endif -%}
+    <h2 class="cta-banner-{{ section.id }}__title">{{ section.settings.title }}</h2>
+  </div>
+  {%- if section.settings.button_label != blank -%}
+    <a
+      {% if section.settings.button_link == blank %}
+        role="link" aria-disabled="true"
+      {% else %}
+        href="{{ section.settings.button_link }}"
+      {% endif %}
+      class="cta-banner-{{ section.id }}__btn"
+    >
+      {{- section.settings.button_label -}}
+    </a>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "label": "CTA banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Sans carte bancaire" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Vous ne payez qu'au moment de la livraison." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Commander" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ]
+}
+{% endschema %}

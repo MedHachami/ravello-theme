@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "main_list_collections": {
+      "type": "main-list-collections",
+      "settings": {
+        "title": "Toutes les collections",
+        "collections_per_page": 12
+      }
+    },
+    "product_browser": {
+      "type": "product-browser",
+      "settings": {
+        "products_to_show": 8,
+        "all_chip_label": "Tout",
+        "sort_label": "Trier",
+        "sort_default_label": "Les plus récents",
+        "cta_label": "Acheter maintenant"
+      }
+    },
+    "cta_banner": {
+      "type": "cta-banner",
+      "settings": {
+        "kicker": "Sans carte bancaire",
+        "title": "Vous ne payez qu'au moment de la livraison.",
+        "button_label": "Commander",
+        "button_link": "/search?collection=&limit=12&q="
+      }
+    }
+  },
+  "order": ["main_list_collections", "product_browser", "cta_banner"]
+}

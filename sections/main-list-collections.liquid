@@ -1,0 +1,67 @@
+{{ 'section-list-collections.css' | asset_url | stylesheet_tag }}
+
+<div class="color-background-1">
+  <div class="list-col__crumbs page-width">
+    <a href="{{ _absolute_store_domain }}">{{ 'general.breadcrumbs.home' | t | default: 'Accueil' }}</a>
+    <span>/</span>
+    <span class="list-col__crumb-current">{{ section.settings.title | default: 'Collections' }}</span>
+  </div>
+
+  <div class="list-col__header page-width">
+    <h1 class="list-col__title">{{ section.settings.title | default: 'Toutes les collections' }}</h1>
+    {%- if section.blocks.size > 0 -%}
+      <div class="list-col__count">{{ section.blocks.size }} collections</div>
+    {%- endif -%}
+  </div>
+
+  <div class="list-col__grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'collection' and block.settings.category != blank -%}
+        {%- assign tile = block.settings.category -%}
+        <a href="{{ _base_collection_url | append: tile.slug }}" class="list-col__tile" {{ block.youcan_attributes }}>
+          <div class="list-col__tile-media">
+            {%- if tile.image -%}
+              <img
+                src="{{ tile.image }}"
+                alt="{{ tile.name | escape }}"
+                loading="lazy"
+                class="list-col__tile-img"
+              >
+            {%- else -%}
+              {%- render '_placeholder_svg_tag', name: 'image', wrapper_class: 'placeholder-svg list-col__tile-placeholder' -%}
+            {%- endif -%}
+          </div>
+          <div class="list-col__tile-info">
+            <div class="list-col__tile-count">
+              {{ tile.product_count | default: 0 }} produits
+            </div>
+            <div class="list-col__tile-name">{{ tile.name }}</div>
+            {%- if tile.description != blank -%}
+              <div class="list-col__tile-desc">{{ tile.description | strip_html | truncatewords: 16 }}</div>
+            {%- endif -%}
+          </div>
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "label": "Collections list",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Toutes les collections" }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "label": "Collection",
+      "settings": [
+        { "type": "category", "id": "category", "label": "Collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}

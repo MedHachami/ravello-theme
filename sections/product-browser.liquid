@@ -1,0 +1,121 @@
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- assign products_to_show = section.settings.products_to_show | default: 8 -%}
+{%- assign sort_field = section.settings.default_sort_field | default: 'created_at' -%}
+{%- assign sort_order = section.settings.default_sort_order | default: 'desc' -%}
+
+{%- if section.settings.collection -%}
+  {%- paginate collection.products by products_to_show product_browser_1, category_id: section.settings.collection.id %}
+
+    <div class="color-background-1">
+      <div class="prod-browse__bar">
+        {%- if section.blocks.size > 0 -%}
+          <div class="prod-browse__chips">
+            <a href="{{ _base_collection_url | append: section.settings.collection.slug }}" class="prod-browse__chip is-active">
+              {{ section.settings.all_chip_label | default: 'Tout' }}
+            </a>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'chip' -%}
+                <a href="{{ block.settings.link }}" class="prod-browse__chip" {{ block.youcan_attributes }}>
+                  {{ block.settings.label }}
+                </a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <form class="prod-browse__sort" data-sort-form>
+          <label for="ProductBrowserSort-{{ section.id }}">{{ section.settings.sort_label | default: 'Trier' }}</label>
+          <select
+            class="input"
+            id="ProductBrowserSort-{{ section.id }}"
+            onchange="location.href=this.value"
+          >
+            <option value="{{ _base_collection_url | append: section.settings.collection.slug }}">
+              {{ section.settings.sort_default_label | default: 'Les plus récents' }}
+            </option>
+            <option value="{{ _base_collection_url | append: section.settings.collection.slug }}?sort_field=price&sort_order=asc">
+              Prix croissant
+            </option>
+            <option value="{{ _base_collection_url | append: section.settings.collection.slug }}?sort_field=price&sort_order=desc">
+              Prix décroissant
+            </option>
+          </select>
+        </form>
+      </div>
+
+      <div class="prod-browse__grid">
+        {%- if items -%}
+          {%- for product in items -%}
+            <div class="prod-browse__card">
+              <a href="{{ product.url }}" class="prod-browse__card-media">
+                {%- if product.thumbnail -%}
+                  <img src="{{ product.thumbnail }}" alt="{{ product.name | escape }}" loading="lazy">
+                {%- else -%}
+                  {%- render '_placeholder_svg_tag', name: 'image', wrapper_class: 'placeholder-svg' -%}
+                {%- endif -%}
+                {%- if product.available == false -%}
+                  <span class="prod-browse__badge">{{ 'products.product.sold_out' | t | default: 'Épuisé' }}</span>
+                {%- elsif product.compare_at_price > product.price -%}
+                  <span class="prod-browse__badge">Promo</span>
+                {%- endif -%}
+              </a>
+              <div class="prod-browse__card-body">
+                <a href="{{ product.url }}" class="prod-browse__card-name">{{ product.name | escape }}</a>
+                <div class="prod-browse__card-prices">
+                  <span class="prod-browse__card-price">{{ product.price | default: 0 | money }}</span>
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="prod-browse__card-price--old">{{ product.compare_at_price | money }}</span>
+                  {%- endif -%}
+                </div>
+                <a href="{{ product.url }}" class="prod-browse__card-cta">
+                  {{ section.settings.cta_label | default: 'Acheter maintenant' }}
+                </a>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+      <div class="prod-browse__footer">
+        <div class="prod-browse__count">
+          {%- if items -%}{{ items.size }} produits affichés{%- endif -%}
+        </div>
+        {%- if last > 1 -%}
+          {% render 'pagination', paginate: paginate %}
+        {%- endif -%}
+      </div>
+    </div>
+  {% endpaginate %}
+{%- endif -%}
+
+{% schema %}
+{
+  "label": "Product browser",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "category",
+      "id": "collection",
+      "label": "Collection to display",
+      "info": "Pick the collection that represents your full catalog (e.g. \"All products\")."
+    },
+    { "type": "range", "id": "products_to_show", "min": 4, "max": 24, "step": 4, "default": 8, "label": "Products to show" },
+    { "type": "text", "id": "all_chip_label", "label": "\"All\" chip label", "default": "Tout" },
+    { "type": "text", "id": "sort_label", "label": "Sort label", "default": "Trier" },
+    { "type": "text", "id": "sort_default_label", "label": "Default sort option label", "default": "Les plus récents" },
+    { "type": "text", "id": "cta_label", "label": "Product card button label", "default": "Acheter maintenant" }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "label": "Category chip",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Électronique" },
+        { "type": "url", "id": "link", "label": "Link to collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}
