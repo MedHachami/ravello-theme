@@ -1,0 +1,288 @@
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .footer {
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<footer class="footer color-inverse gradient section-{{ section.id }}-padding">
+  <div class="footer__content-top page-width ravello-footer-static">
+    <div class="ravello-footer-static__brand">
+      <span class="ravello-logo">
+        <span class="ravello-logo__mark" aria-hidden="true">R</span>
+        <span class="ravello-logo__text">
+          <span class="ravello-logo__name" style="color:#fff;">RAVELLO</span>
+        </span>
+      </span>
+      <p class="ravello-footer-static__desc">Gadgets électroniques et appareils pour la maison. Paiement à la livraison, partout au Maroc.</p>
+    </div>
+    <div class="ravello-footer-static__col">
+      <h2 class="ravello-footer-static__heading">À propos du magasin</h2>
+      <a href="/pages/a-propos">À propos</a>
+      <a href="/pages/methodes-de-paiement">Méthodes de payement</a>
+      <a href="/pages/expedition">Expédition et manutention</a>
+    </div>
+    <div class="ravello-footer-static__col">
+      <h2 class="ravello-footer-static__heading">Contactez-nous</h2>
+      <a href="/pages/contact">Contactez nous</a>
+      <a href="/pages/faq">Aide &amp; FAQ</a>
+    </div>
+    <div class="ravello-footer-static__col">
+      <h2 class="ravello-footer-static__heading">Termes et politiques</h2>
+      <a href="/pages/conditions-dutilisation">Conditions d'utilisation</a>
+      <a href="/pages/retours-echanges">Retours &amp; échanges</a>
+      <a href="/pages/confidentialite">Politique de Confidentialité</a>
+    </div>
+  </div>
+
+  {%- assign has_social_icons = true -%}
+  {%- if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank -%}
+    {%- assign has_social_icons = false -%}
+  {%- endif -%}
+  {%- if section.settings.show_social and has_social_icons -%}
+    <div class="page-width" style="padding-bottom: 16px;">
+      {%- render 'social-icons', class: 'footer__list-social' -%}
+    </div>
+  {%- endif -%}
+
+  <div
+    class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__column footer__localization isolate"></div>
+      <div class="footer__column footer__column--info"></div>
+    </div>
+    <div class="footer__content-bottom-wrapper page-width footer__content-bottom-wrapper--center">
+      <div class="footer__copyright caption">
+        <small class="copyright__content"
+          >&copy; {{ 'now' | date: '%Y' }} {{ store.name | link_to: _absolute_store_domain }}. Tous droits réservés.
+        </small>
+        <small class="copyright__content">Powered by 3li</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "label": "Footer",
+  "class": "youcan-section-group-footer-group",
+  "blocks": [
+    {
+      "type": "link_list",
+      "label": "Menu",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "heading",
+          "default": "Quick links",
+          "label": "Heading"
+        },
+        {
+          "type": "checkbox",
+          "id": "menu",
+          "default": true,
+          "label": "Menu",
+          "info": "Displays only top-level menu items."
+        }
+      ]
+    },
+    {
+      "type": "brand_information",
+      "label": "Brand information",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "This block will display your brand information. [Edit brand information.](/editor?context=theme&category=brand%20information)"
+        },
+        {
+          "type": "header",
+          "content": "Social media icons"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": true,
+          "label": "Show social media icons",
+          "info": "To display your social media accounts, link them in your [theme settings](/editor?context=theme&category=social%20media)."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "label": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "heading",
+          "default": "Heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
+          "label": "Subtext"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "label": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image alignment on large screen",
+          "options": [
+            {
+              "value": "",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Email Signup",
+      "info": "Subscribers added automatically to your “accepted marketing” customer list. [Learn more](https://help.shopify.com/manual/customers/manage-customers)"
+    },
+    {
+      "type": "header",
+      "content": "Follow on Shop",
+      "info": "To allow customers to follow your store on the Shop app from your storefront, Shop Pay must be enabled. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/follow-on-shop)"
+    },
+    {
+      "type": "header",
+      "content": "Social media icons",
+      "info": "To display your social media accounts, link them in your [theme settings](/editor?context=theme&category=social%20media)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "Show social media icons"
+    },
+    {
+      "type": "header",
+      "content": "Country/region selector",
+      "info": "To add a country/region, go to your [market settings.](/admin/settings/markets)"
+    },
+    {
+      "type": "header",
+      "content": "Language selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "Enable language selector"
+    },
+    {
+      "type": "header",
+      "content": "Payment methods"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "Show payment icons"
+    },
+    {
+      "type": "header",
+      "content": "Policy links",
+      "info": "To add store policies, go to your [policy settings](/admin/settings/legal)."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

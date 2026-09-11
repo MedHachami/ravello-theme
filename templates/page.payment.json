@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "info_hero": {
+      "type": "info-hero",
+      "settings": {
+        "current_page": "payment",
+        "kicker": "Paiement",
+        "title": "Vous payez à la livraison."
+      }
+    },
+    "info_steps": {
+      "type": "info-steps",
+      "settings": {
+        "sub_heading": "Bon à savoir"
+      },
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Vous commandez",
+            "description": "Nom, téléphone, ville et adresse. Aucun moyen de paiement n'est demandé."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Nous confirmons",
+            "description": "Un appel ou un message WhatsApp pour valider l'article et l'adresse."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Vous payez au livreur",
+            "description": "En espèces, à la remise du colis, après vérification du contenu."
+          }
+        },
+        "bullet-1": {
+          "type": "bullet",
+          "settings": { "text": "Le montant affiché sur la fiche produit est le montant final : la livraison est gratuite." }
+        },
+        "bullet-2": {
+          "type": "bullet",
+          "settings": { "text": "Prévoyez le montant exact si possible — le livreur ne dispose pas toujours de monnaie." }
+        },
+        "bullet-3": {
+          "type": "bullet",
+          "settings": { "text": "Vous pouvez ouvrir le colis devant le livreur et refuser la commande si le produit ne correspond pas." }
+        },
+        "bullet-4": {
+          "type": "bullet",
+          "settings": { "text": "Une commande refusée sans motif à répétition peut entraîner une demande de prépaiement sur les commandes suivantes." }
+        }
+      },
+      "order": ["step-1", "step-2", "step-3", "bullet-1", "bullet-2", "bullet-3", "bullet-4"]
+    }
+  },
+  "order": ["info_hero", "info_steps"]
+}

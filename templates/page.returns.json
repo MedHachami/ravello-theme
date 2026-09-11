@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "info_hero": {
+      "type": "info-hero",
+      "settings": {
+        "current_page": "returns",
+        "kicker": "Après-vente",
+        "title": "Retours et échanges."
+      }
+    },
+    "info_returns": {
+      "type": "info-stats-block",
+      "settings": {
+        "intro": "<p>Vous avez 7 jours après la réception pour demander un échange ou un retour si le produit est défectueux, endommagé ou différent de celui commandé.</p>",
+        "sub_heading_1": "Conditions d'acceptation",
+        "sub_heading_2": "Comment demander un retour",
+        "sub_body_2": "<p>Appelez-nous ou envoyez un message WhatsApp au <strong>[votre numéro]</strong> avec votre nom, votre numéro de commande et la raison du retour. Nous organisons l'enlèvement du colis et, selon votre choix, nous procédons à un échange ou à un remboursement en espèces.</p>"
+      },
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": { "value": "7j", "title": "Délai de demande", "description": "À compter du jour de la réception du colis." }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": { "value": "0 د.م", "title": "Frais de retour", "description": "À notre charge si le défaut vient de nous." }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": { "value": "48h", "title": "Traitement", "description": "Réponse à votre demande sous deux jours ouvrés." }
+        },
+        "bullet-1": {
+          "type": "bullet",
+          "settings": { "text": "Le produit doit être complet : accessoires, câbles, notice et emballage d'origine." }
+        },
+        "bullet-2": {
+          "type": "bullet",
+          "settings": { "text": "Joignez une photo ou une courte vidéo du défaut à votre demande — cela accélère le traitement." }
+        },
+        "bullet-3": {
+          "type": "bullet",
+          "settings": { "text": "Les produits abîmés par une mauvaise utilisation ou une ouverture forcée ne sont pas repris." }
+        },
+        "bullet-4": {
+          "type": "bullet",
+          "settings": { "text": "Un article simplement « non désiré » peut être échangé, mais les frais de retour restent à votre charge." }
+        }
+      },
+      "order": ["stat-1", "stat-2", "stat-3", "bullet-1", "bullet-2", "bullet-3", "bullet-4"]
+    }
+  },
+  "order": ["info_hero", "info_returns"]
+}

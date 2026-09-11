@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "info_hero": {
+      "type": "info-hero",
+      "settings": {
+        "current_page": "contact",
+        "kicker": "Service client",
+        "title": "Parlons de votre commande."
+      }
+    },
+    "info_contact": {
+      "type": "info-contact",
+      "settings": {
+        "whatsapp_number": "",
+        "form_title": "Envoyer un message",
+        "submit_label": "Envoyer"
+      },
+      "blocks": {
+        "card-1": {
+          "type": "contact_info",
+          "settings": { "label": "Téléphone & WhatsApp", "accent": true, "value_prefix": "+212", "value": "[votre numéro]" }
+        },
+        "card-2": {
+          "type": "contact_info",
+          "settings": { "label": "E-mail", "accent": true, "value_prefix": "", "value": "[contact@…]" }
+        },
+        "card-3": {
+          "type": "contact_info",
+          "settings": { "label": "Horaires", "accent": false, "value_prefix": "", "value": "Lundi – Samedi, 9h00 – 19h00" }
+        }
+      },
+      "order": ["card-1", "card-2", "card-3"]
+    }
+  },
+  "order": ["info_hero", "info_contact"]
+}

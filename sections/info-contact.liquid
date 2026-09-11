@@ -1,0 +1,141 @@
+{{ 'section-info-pages.css' | asset_url | stylesheet_tag }}
+
+<div class="color-background-1">
+  <div class="info-page-width">
+    <div class="info-grid--2" style="display:grid;">
+      <div class="info-about">
+        {%- if section.settings.intro != blank -%}
+          <p>{{ section.settings.intro }}</p>
+        {%- endif -%}
+
+        {%- assign cards = section.blocks | where: 'type', 'contact_info' -%}
+        {%- if cards.size > 0 -%}
+          <div class="info-grid" style="grid-template-columns: 1fr;">
+            {%- for block in cards -%}
+              <div class="info-cell info-cell--tight" {{ block.youcan_attributes }}>
+                <div class="info-cell__label">{{ block.settings.label }}</div>
+                {%- if block.settings.accent -%}
+                  <div class="info-cell__value info-cell__value--sm">
+                    {{ block.settings.value_prefix }} <span style="color:rgb(var(--color-link));">{{ block.settings.value }}</span>
+                  </div>
+                {%- else -%}
+                  <div style="font-size:15px;line-height:1.5;">{{ block.settings.value }}</div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <contact-whatsapp-form
+        class="info-contact-form"
+        data-whatsapp-number="{{ section.settings.whatsapp_number }}"
+      >
+        <h2>{{ section.settings.form_title | default: 'Envoyer un message' }}</h2>
+        <form data-contact-form>
+          <div class="field">
+            <input class="field__input" type="text" id="ContactName-{{ section.id }}" name="name" placeholder="Votre nom" required>
+            <label class="field__label" for="ContactName-{{ section.id }}">Nom complet</label>
+          </div>
+          <div class="field">
+            <input class="field__input" type="tel" id="ContactPhone-{{ section.id }}" name="phone" placeholder="06 00 00 00 00" required>
+            <label class="field__label" for="ContactPhone-{{ section.id }}">Téléphone</label>
+          </div>
+          <div class="field">
+            <textarea class="field__input" id="ContactMessage-{{ section.id }}" name="message" rows="4" placeholder="Votre question" required></textarea>
+            <label class="field__label" for="ContactMessage-{{ section.id }}">Message</label>
+          </div>
+          <button type="submit" class="button button--primary">
+            {{ section.settings.submit_label | default: 'Envoyer' }}
+          </button>
+          <p class="info-contact-status" data-contact-status hidden></p>
+        </form>
+      </contact-whatsapp-form>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    if (customElements.get('contact-whatsapp-form')) return;
+
+    class ContactWhatsappForm extends HTMLElement {
+      connectedCallback() {
+        this.form = this.querySelector('[data-contact-form]');
+        this.status = this.querySelector('[data-contact-status]');
+        this.form.addEventListener('submit', this.onSubmit.bind(this));
+      }
+
+      onSubmit(event) {
+        event.preventDefault();
+        const number = (this.dataset.whatsappNumber || '').replace(/[^0-9]/g, '');
+        const data = new FormData(this.form);
+        const name = (data.get('name') || '').toString().trim();
+        const phone = (data.get('phone') || '').toString().trim();
+        const message = (data.get('message') || '').toString().trim();
+
+        if (!name || !phone || !message) return;
+
+        if (!number) {
+          this.status.textContent = "Le numéro WhatsApp de la boutique n'est pas encore configuré.";
+          this.status.classList.add('is-error');
+          this.status.hidden = false;
+          return;
+        }
+
+        const text = `Bonjour Ravello,%0A%0ANom: ${encodeURIComponent(name)}%0ATéléphone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
+        const url = `https://wa.me/${number}?text=${text}`;
+
+        this.status.classList.remove('is-error');
+        this.status.textContent = 'Ouverture de WhatsApp…';
+        this.status.hidden = false;
+
+        window.open(url, '_blank', 'noopener');
+        this.form.reset();
+      }
+    }
+
+    customElements.define('contact-whatsapp-form', ContactWhatsappForm);
+  })();
+</script>
+
+{% schema %}
+{
+  "label": "Info page: Contact",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro paragraph",
+      "default": "<p>Une question sur un produit, une commande en cours, un retour ? Écrivez-nous ou appelez-nous, nous répondons du lundi au samedi.</p>"
+    },
+    {
+      "type": "header",
+      "content": "WhatsApp form"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number",
+      "info": "Country code + number, digits only, e.g. 212600000000. The form opens a pre-filled WhatsApp chat to this number.",
+      "default": ""
+    },
+    { "type": "text", "id": "form_title", "label": "Form title", "default": "Envoyer un message" },
+    { "type": "text", "id": "submit_label", "label": "Submit button label", "default": "Envoyer" }
+  ],
+  "blocks": [
+    {
+      "type": "contact_info",
+      "label": "Contact info card",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Téléphone & WhatsApp" },
+        { "type": "checkbox", "id": "accent", "label": "Highlight value in accent color", "default": true },
+        { "type": "text", "id": "value_prefix", "label": "Value prefix (optional)", "default": "+212" },
+        { "type": "text", "id": "value", "label": "Value", "default": "[votre numéro]" }
+      ]
+    }
+  ]
+}
+{% endschema %}

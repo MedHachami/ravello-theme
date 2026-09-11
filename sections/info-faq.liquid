@@ -1,0 +1,37 @@
+{{ 'section-info-pages.css' | asset_url | stylesheet_tag }}
+
+<div class="color-background-1">
+  <div class="info-page-width">
+    <div style="max-width:900px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' -%}
+          <div class="info-faq-item" {{ block.youcan_attributes }}>
+            <div class="info-faq-item__n">{% if forloop.index < 10 %}0{{ forloop.index }}{% else %}{{ forloop.index }}{% endif %}</div>
+            <div class="info-faq-item__body">
+              <div class="info-faq-item__q">{{ block.settings.question }}</div>
+              <div class="info-faq-item__a">{{ block.settings.answer }}</div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "label": "Info page: FAQ",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "faq_item",
+      "label": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Dois-je payer avant la livraison ?" },
+        { "type": "textarea", "id": "answer", "label": "Answer", "default": "Non. Toutes les commandes sont réglées en espèces au livreur, au moment de la réception. Aucune carte bancaire n'est demandée sur le site." }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,159 @@
+{{ 'section-hero-ravello.css' | asset_url | stylesheet_tag }}
+
+<section class="hero-ravello" id="HeroRavello-{{ section.id }}">
+  <div class="hero-ravello__wrap">
+    <div class="hero-ravello__left">
+      <div class="hero-ravello__badges">
+        {%- if section.settings.badge_1 != blank -%}
+          <span class="hero-ravello__badge hero-ravello__badge--solid">{{ section.settings.badge_1 }}</span>
+        {%- endif -%}
+        {%- if section.settings.badge_2 != blank -%}
+          <span class="hero-ravello__badge hero-ravello__badge--outline">{{ section.settings.badge_2 }}</span>
+        {%- endif -%}
+      </div>
+
+      <h1 class="hero-ravello__headline">
+        {{ section.settings.headline }}
+        <span class="hero-ravello__accent">{{ section.settings.headline_accent }}</span>
+      </h1>
+
+      <p class="hero-ravello__subcopy">{{ section.settings.subcopy }}</p>
+
+      <div class="hero-ravello__cta">
+        {%- if section.settings.primary_btn_text != blank -%}
+          <a
+            {% if section.settings.primary_btn_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section.settings.primary_btn_link }}"
+            {% endif %}
+            class="hero-ravello__btn hero-ravello__btn--primary"
+          >
+            {{- section.settings.primary_btn_text -}}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.secondary_btn_text != blank -%}
+          <a
+            {% if section.settings.secondary_btn_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section.settings.secondary_btn_link }}"
+            {% endif %}
+            class="hero-ravello__btn hero-ravello__btn--secondary"
+          >
+            {{- section.settings.secondary_btn_text -}}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="hero-ravello__stats">
+        {%- if section.settings.stat_1_num != blank -%}
+          <div class="hero-ravello__stat">
+            <div class="hero-ravello__stat-num">{{ section.settings.stat_1_num }}</div>
+            <div class="hero-ravello__stat-label">{{ section.settings.stat_1_label }}</div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.stat_2_num != blank -%}
+          <div class="hero-ravello__stat">
+            <div class="hero-ravello__stat-num">{{ section.settings.stat_2_num }}</div>
+            <div class="hero-ravello__stat-label">{{ section.settings.stat_2_label }}</div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.stat_3_num != blank -%}
+          <div class="hero-ravello__stat">
+            <div class="hero-ravello__stat-num">{{ section.settings.stat_3_num }}</div>
+            <div class="hero-ravello__stat-label">{{ section.settings.stat_3_label }}</div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="hero-ravello__right">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image.src }}"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+          alt="{{ section.settings.headline | escape }}"
+          loading="eager"
+        />
+      {%- else -%}
+        <div class="hero-ravello__placeholder">Photo produit ici</div>
+      {%- endif -%}
+
+      {%- if section.settings.badge_new_title != blank -%}
+        <div class="hero-ravello__new-badge">
+          <div class="hero-ravello__new-title">{{ section.settings.badge_new_title }}</div>
+          <div class="hero-ravello__new-sub">{{ section.settings.badge_new_sub }}</div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="hero-ravello__features">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'feature' -%}
+          <div class="hero-ravello__feature" {{ block.youcan_attributes }}>
+            <div class="hero-ravello__feature-icon">{{ block.settings.icon }}</div>
+            <div>
+              <p class="hero-ravello__feature-title">{{ block.settings.title }}</p>
+              <p class="hero-ravello__feature-desc">{{ block.settings.description }}</p>
+            </div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "label": "Hero Ravello",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "badge_1", "label": "Badge 1 (solid)", "default": "Paiement à la livraison" },
+    { "type": "text", "id": "badge_2", "label": "Badge 2 (outline)", "default": "Maroc entier" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Gadgets et appareils pour la maison." },
+    { "type": "text", "id": "headline_accent", "label": "Headline accent line", "default": "Payés à la porte." },
+    { "type": "richtext", "id": "subcopy", "label": "Subcopy", "default": "<p>Commandez sans carte bancaire. Vous recevez, vous vérifiez, puis vous payez en espèces au livreur. Livraison gratuite en 24 à 72 heures.</p>" },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    { "type": "text", "id": "primary_btn_text", "label": "Primary button label", "default": "Acheter maintenant" },
+    { "type": "url", "id": "primary_btn_link", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_btn_text", "label": "Secondary button label", "default": "Voir les collections" },
+    { "type": "url", "id": "secondary_btn_link", "label": "Secondary button link" },
+    {
+      "type": "header",
+      "content": "Stats row"
+    },
+    { "type": "text", "id": "stat_1_num", "label": "Stat 1 value", "default": "0 د.م" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 label", "default": "Frais de livraison" },
+    { "type": "text", "id": "stat_2_num", "label": "Stat 2 value", "default": "24–72h" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 label", "default": "Délai de réception" },
+    { "type": "text", "id": "stat_3_num", "label": "Stat 3 value", "default": "7 jours" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 label", "default": "Retour accepté" },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    { "type": "image_picker", "id": "image", "label": "Product image" },
+    { "type": "text", "id": "badge_new_title", "label": "Corner badge title", "default": "Nouveautés" },
+    { "type": "text", "id": "badge_new_sub", "label": "Corner badge subtitle", "default": "Cuisine, audio, entretien" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "label": "Feature",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon (emoji or short text)", "default": "🚚" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Livraison gratuite" },
+        { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Toutes les villes du Maroc, sans minimum d'achat.</p>" }
+      ]
+    }
+  ]
+}
+{% endschema %}

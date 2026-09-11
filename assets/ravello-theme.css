@@ -1,0 +1,128 @@
+/* Ravello brand layer — sits on top of the base Dusk theme styles.
+   Design source: Ravello Pages canvas (red/black/white, Archivo, sharp corners). */
+
+.ravello-logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.ravello-logo__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  background: #ec3013;
+  color: #fff;
+  font-family: var(--font-heading-family);
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.ravello-logo__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.ravello-logo__name {
+  font-family: var(--font-heading-family);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgb(var(--color-foreground));
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.ravello-logo__tagline {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+/* Sharp, high-contrast header/footer rules matching the brand's flat, bordered look. */
+.section-header .header-wrapper--border-bottom {
+  border-bottom: 2px solid rgb(var(--color-foreground));
+}
+
+.footer {
+  border-top: 2px solid rgb(var(--color-foreground));
+}
+
+/* Static footer fallback — shown when no footer blocks are configured in the
+   customizer (see sections/footer.liquid). Mirrors the Ravello design's footer. */
+.footer__content-top.ravello-footer-static {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  padding-top: 40px;
+  padding-bottom: 8px;
+}
+
+@media screen and (max-width: 749px) {
+  .footer__content-top.ravello-footer-static {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.ravello-footer-static__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ravello-footer-static__brand .ravello-logo__mark {
+  width: 34px;
+  height: 34px;
+  font-size: 22px;
+}
+
+.ravello-footer-static__brand .ravello-logo__name {
+  font-size: 19px;
+}
+
+.ravello-footer-static__desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 30ch;
+  margin: 0;
+}
+
+.ravello-footer-static__col {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.ravello-footer-static__heading {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 3px;
+}
+
+.ravello-footer-static__col a {
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.ravello-footer-static__col a:hover {
+  color: #ff9783;
+}
+
+/* Buttons: bold uppercase label to match the design system's .btn-primary */
+.button,
+.shopify-payment-button__button {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}

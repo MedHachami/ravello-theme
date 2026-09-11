@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "info_hero": {
+      "type": "info-hero",
+      "settings": {
+        "current_page": "shipping",
+        "kicker": "Livraison",
+        "title": "Expédition et manutention."
+      }
+    },
+    "info_shipping": {
+      "type": "info-shipping-table",
+      "settings": {
+        "sub_heading": "Suivi et manutention"
+      },
+      "blocks": {
+        "row-1": {
+          "type": "table_row",
+          "settings": { "zone": "[grandes villes couvertes]", "zone_accent": true, "delay": "[délai]", "fee": "0 د.م" }
+        },
+        "row-2": {
+          "type": "table_row",
+          "settings": { "zone": "Autres villes", "zone_accent": false, "delay": "[délai]", "fee": "0 د.م" }
+        },
+        "row-3": {
+          "type": "table_row",
+          "settings": { "zone": "Zones rurales et communes éloignées", "zone_accent": false, "delay": "[délai]", "fee": "0 د.م" }
+        },
+        "bullet-1": {
+          "type": "bullet",
+          "settings": { "text": "Les commandes passées avant 17h sont préparées le jour même ; après 17h, le lendemain ouvré." }
+        },
+        "bullet-2": {
+          "type": "bullet",
+          "settings": { "text": "Les appareils fragiles partent en emballage renforcé et sont contrôlés avant fermeture du colis." }
+        },
+        "bullet-3": {
+          "type": "bullet",
+          "settings": { "text": "Le livreur vous appelle avant de se présenter. Deux tentatives de livraison sont effectuées." }
+        },
+        "bullet-4": {
+          "type": "bullet",
+          "settings": { "text": "Les délais sont indicatifs et peuvent s'allonger pendant les périodes de forte demande et les jours fériés." }
+        }
+      },
+      "order": ["row-1", "row-2", "row-3", "bullet-1", "bullet-2", "bullet-3", "bullet-4"]
+    }
+  },
+  "order": ["info_hero", "info_shipping"]
+}

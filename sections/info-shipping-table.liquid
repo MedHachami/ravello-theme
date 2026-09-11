@@ -1,0 +1,87 @@
+{{ 'section-info-pages.css' | asset_url | stylesheet_tag }}
+
+<div class="color-background-1">
+  <div class="info-page-width">
+    <div class="info-section">
+      {%- if section.settings.intro != blank -%}
+        <p class="info-lede">{{ section.settings.intro }}</p>
+      {%- endif -%}
+
+      {%- assign rows = section.blocks | where: 'type', 'table_row' -%}
+      {%- if rows.size > 0 -%}
+        <div class="info-table-wrap">
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>Zone</th>
+                <th>Délai</th>
+                <th>Frais</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for block in rows -%}
+                <tr {{ block.youcan_attributes }}>
+                  <td>
+                    {%- if block.settings.zone_accent -%}<span class="accent">{{ block.settings.zone }}</span>{%- else -%}{{ block.settings.zone }}{%- endif -%}
+                  </td>
+                  <td><span class="accent">{{ block.settings.delay }}</span></td>
+                  <td style="font-weight:700;">{{ block.settings.fee }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.sub_heading != blank -%}
+        <div class="info-sub">
+          <h2>{{ section.settings.sub_heading }}</h2>
+          {%- assign bullets = section.blocks | where: 'type', 'bullet' -%}
+          {%- if bullets.size > 0 -%}
+            <ul class="info-bullets">
+              {%- for block in bullets -%}
+                <li {{ block.youcan_attributes }}>{{ block.settings.text }}</li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "label": "Info page: Shipping table",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro paragraph",
+      "default": "<p>Toutes les commandes sont expédiées depuis notre entrepôt après confirmation téléphonique. La livraison est gratuite, sans minimum d'achat.</p>"
+    },
+    { "type": "text", "id": "sub_heading", "label": "Second heading", "default": "Suivi et manutention" }
+  ],
+  "blocks": [
+    {
+      "type": "table_row",
+      "label": "Table row",
+      "settings": [
+        { "type": "text", "id": "zone", "label": "Zone", "default": "[grandes villes couvertes]" },
+        { "type": "checkbox", "id": "zone_accent", "label": "Highlight zone in accent color", "default": true },
+        { "type": "text", "id": "delay", "label": "Délai", "default": "[délai]" },
+        { "type": "text", "id": "fee", "label": "Frais", "default": "0 د.م" }
+      ]
+    },
+    {
+      "type": "bullet",
+      "label": "Bullet point",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Les commandes passées avant 17h sont préparées le jour même ; après 17h, le lendemain ouvré." }
+      ]
+    }
+  ]
+}
+{% endschema %}

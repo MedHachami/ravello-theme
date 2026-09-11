@@ -1,0 +1,89 @@
+{{ 'section-info-pages.css' | asset_url | stylesheet_tag }}
+
+<div class="color-background-1">
+  <div class="info-page-width">
+    <div class="info-section">
+      {%- if section.settings.intro != blank -%}
+        <p class="info-lede">{{ section.settings.intro }}</p>
+      {%- endif -%}
+
+      {%- assign stats = section.blocks | where: 'type', 'stat' -%}
+      {%- if stats.size > 0 -%}
+        <div class="info-grid">
+          {%- for block in stats -%}
+            <div class="info-cell" {{ block.youcan_attributes }}>
+              <div class="info-cell__value">{{ block.settings.value }}</div>
+              <div class="info-cell__title">{{ block.settings.title }}</div>
+              <div class="info-cell__desc">{{ block.settings.description }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.sub_heading_1 != blank -%}
+        <div class="info-sub">
+          <h2>{{ section.settings.sub_heading_1 }}</h2>
+          {%- assign bullets = section.blocks | where: 'type', 'bullet' -%}
+          {%- if bullets.size > 0 -%}
+            <ul class="info-bullets">
+              {%- for block in bullets -%}
+                <li {{ block.youcan_attributes }}>{{ block.settings.text }}</li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.sub_heading_2 != blank -%}
+        <div class="info-sub">
+          <h2>{{ section.settings.sub_heading_2 }}</h2>
+          {%- if section.settings.sub_body_2 != blank -%}
+            <p style="font-size:15px;line-height:1.6;margin:0;color:rgba(var(--color-foreground),0.7);max-width:70ch;">{{ section.settings.sub_body_2 }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "label": "Info page: Stats + bullets",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro paragraph",
+      "default": "<p>Vous avez 7 jours après la réception pour demander un échange ou un retour si le produit est défectueux, endommagé ou différent de celui commandé.</p>"
+    },
+    { "type": "text", "id": "sub_heading_1", "label": "Second heading", "default": "Conditions d'acceptation" },
+    { "type": "text", "id": "sub_heading_2", "label": "Third heading", "default": "Comment demander un retour" },
+    {
+      "type": "richtext",
+      "id": "sub_body_2",
+      "label": "Third heading paragraph",
+      "default": "<p>Appelez-nous ou envoyez un message WhatsApp au <strong>[votre numéro]</strong> avec votre nom, votre numéro de commande et la raison du retour. Nous organisons l'enlèvement du colis et, selon votre choix, nous procédons à un échange ou à un remboursement en espèces.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "label": "Stat",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "7j" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Délai de demande" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "À compter du jour de la réception du colis." }
+      ]
+    },
+    {
+      "type": "bullet",
+      "label": "Bullet point",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Le produit doit être complet : accessoires, câbles, notice et emballage d'origine." }
+      ]
+    }
+  ]
+}
+{% endschema %}

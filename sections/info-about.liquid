@@ -1,0 +1,68 @@
+{{ 'section-info-pages.css' | asset_url | stylesheet_tag }}
+
+<div class="color-background-1">
+  <div class="info-page-width">
+    <div class="info-grid--2" style="display:grid;">
+      <div class="info-about">
+        {{ section.settings.paragraph_1 }}
+        {{ section.settings.paragraph_2 }}
+        {{ section.settings.paragraph_3 }}
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="info-grid" style="align-self:start;">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'stat' -%}
+              <div class="info-cell info-cell--tight" {{ block.youcan_attributes }}>
+                <div class="info-cell__value info-cell__value--sm">
+                  {{ block.settings.value }}{% if block.settings.value_accent != blank %} <span style="color:rgb(var(--color-link));">{{ block.settings.value_accent }}</span>{% endif %}
+                </div>
+                <div class="info-cell__label">{{ block.settings.label }}</div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "label": "Info page: About",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "<p>Ravello est une boutique marocaine spécialisée dans les gadgets électroniques et les appareils pour la maison. Nous sélectionnons des produits utiles au quotidien, nous les contrôlons avant expédition, et nous les livrons partout au Maroc.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "<p>Notre principe est simple : vous ne payez rien à l'avance. La commande part de notre entrepôt, le livreur vous la remet, vous vérifiez le contenu, puis vous payez en espèces. Pas de carte bancaire, pas de risque.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_3",
+      "label": "Paragraph 3",
+      "default": "<p>Nous travaillons avec des transporteurs qui couvrent l'ensemble du territoire, des grandes villes aux petites communes, avec un délai habituel de 24 à 72 heures.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "label": "Stat",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "Depuis" },
+        { "type": "text", "id": "value_accent", "label": "Value (accent, optional)", "default": "[année]" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Année de création" }
+      ]
+    }
+  ]
+}
+{% endschema %}

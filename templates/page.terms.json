@@ -1,0 +1,79 @@
+{
+  "sections": {
+    "info_hero": {
+      "type": "info-hero",
+      "settings": {
+        "current_page": "terms",
+        "kicker": "Légal",
+        "title": "Conditions d'utilisation."
+      }
+    },
+    "info_terms": {
+      "type": "info-terms",
+      "settings": {
+        "intro": "<p>En passant commande sur Ravello, vous acceptez les conditions ci-dessous. Elles s'appliquent à toute commande passée sur ce site.</p>",
+        "footnote": "<p>Dernière mise à jour : <span style=\"color:#ec3013;\">[date]</span> — Ravello, <span style=\"color:#ec3013;\">[ville, Maroc]</span>.</p>"
+      },
+      "blocks": {
+        "term-1": {
+          "type": "term_item",
+          "settings": {
+            "heading": "1. Objet",
+            "body": "Ces conditions régissent la vente des produits proposés sur le site Ravello aux clients situés au Maroc. Toute commande implique leur acceptation sans réserve."
+          }
+        },
+        "term-2": {
+          "type": "term_item",
+          "settings": {
+            "heading": "2. Produits et prix",
+            "body": "Les descriptions et photographies sont fournies à titre indicatif. Les prix sont indiqués en dirhams, toutes charges comprises, et la livraison est gratuite. Nous pouvons modifier nos prix à tout moment, sans effet sur les commandes déjà confirmées."
+          }
+        },
+        "term-3": {
+          "type": "term_item",
+          "settings": {
+            "heading": "3. Commande",
+            "body": "Une commande n'est ferme qu'après confirmation par téléphone ou par message. Nous pouvons refuser ou annuler une commande en cas d'adresse incomplète, de numéro injoignable ou de soupçon d'abus."
+          }
+        },
+        "term-4": {
+          "type": "term_item",
+          "settings": {
+            "heading": "4. Paiement",
+            "body": "Le paiement se fait exclusivement en espèces, au livreur, à la réception du colis. Aucun paiement en ligne n'est collecté par le site."
+          }
+        },
+        "term-5": {
+          "type": "term_item",
+          "settings": {
+            "heading": "5. Livraison",
+            "body": "Les délais annoncés sont indicatifs et courent à partir de la confirmation. Un retard n'ouvre pas droit à indemnité. Deux tentatives de livraison sont effectuées ; passé ce délai, le colis revient à notre entrepôt."
+          }
+        },
+        "term-6": {
+          "type": "term_item",
+          "settings": {
+            "heading": "6. Garantie et retours",
+            "body": "Les produits défectueux ou non conformes sont échangés ou remboursés selon la politique de retours, dans un délai de 7 jours après réception."
+          }
+        },
+        "term-7": {
+          "type": "term_item",
+          "settings": {
+            "heading": "7. Responsabilité",
+            "body": "Notre responsabilité est limitée au montant de la commande. Nous ne saurions être tenus responsables d'un usage du produit non conforme à sa notice."
+          }
+        },
+        "term-8": {
+          "type": "term_item",
+          "settings": {
+            "heading": "8. Droit applicable",
+            "body": "Ces conditions sont soumises au droit marocain. En cas de litige, une solution amiable sera recherchée avant toute action judiciaire."
+          }
+        }
+      },
+      "order": ["term-1", "term-2", "term-3", "term-4", "term-5", "term-6", "term-7", "term-8"]
+    }
+  },
+  "order": ["info_hero", "info_terms"]
+}

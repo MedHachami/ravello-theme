@@ -1,0 +1,124 @@
+{
+  "sections": {
+    "hero_ravello": {
+      "type": "hero-ravello",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🚚",
+            "title": "Livraison gratuite",
+            "description": "<p>Toutes les villes du Maroc, sans minimum d'achat.</p>"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "💵",
+            "title": "Payez à la réception",
+            "description": "<p>En espèces, au livreur. Aucune carte requise.</p>"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Produits vérifiés",
+            "description": "<p>Contrôlés avant expédition, garantie 7 jours.</p>"
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "icon": "📞",
+            "title": "Service client",
+            "description": "<p>Une question ? On répond par téléphone et WhatsApp.</p>"
+          }
+        }
+      },
+      "order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4"
+      ],
+      "settings": {
+        "badge_1": "Paiement à la livraison",
+        "badge_2": "Maroc entier",
+        "headline": "Gadgets et appareils pour la maison.",
+        "headline_accent": "Payés à la porte.",
+        "subcopy": "<p>Commandez sans carte bancaire. Vous recevez, vous vérifiez, puis vous payez en espèces au livreur. Livraison gratuite en 24 à 72 heures.</p>",
+        "primary_btn_text": "Acheter maintenant",
+        "primary_btn_link": "/search?collection=&limit=12&q=",
+        "secondary_btn_text": "Voir les collections",
+        "secondary_btn_link": "",
+        "stat_1_num": "0 د.م",
+        "stat_1_label": "Frais de livraison",
+        "stat_2_num": "24–72h",
+        "stat_2_label": "Délai de réception",
+        "stat_3_num": "7 jours",
+        "stat_3_label": "Retour accepté",
+        "badge_new_title": "Nouveautés",
+        "badge_new_sub": "Cuisine, audio, entretien"
+      }
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label"
+          }
+        }
+      },
+      "order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured products",
+        "heading_size": "h2",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "show_view_all": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "adapt",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 28,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "hero_ravello",
+    "rich_text",
+    "featured_collection"
+  ]
+}

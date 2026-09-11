@@ -1,0 +1,83 @@
+{{ 'section-info-pages.css' | asset_url | stylesheet_tag }}
+
+<div class="color-background-1">
+  <nav class="info-nav" aria-label="Pages d'information">
+    {%- assign current = section.settings.current_page -%}
+    {%- if section.settings.nav_about_url != blank -%}
+      <a class="info-nav__tab{% if current == 'about' %} is-active{% endif %}" href="{{ section.settings.nav_about_url }}">À propos</a>
+    {%- endif -%}
+    {%- if section.settings.nav_payment_url != blank -%}
+      <a class="info-nav__tab{% if current == 'payment' %} is-active{% endif %}" href="{{ section.settings.nav_payment_url }}">Méthodes de payement</a>
+    {%- endif -%}
+    {%- if section.settings.nav_shipping_url != blank -%}
+      <a class="info-nav__tab{% if current == 'shipping' %} is-active{% endif %}" href="{{ section.settings.nav_shipping_url }}">Expédition</a>
+    {%- endif -%}
+    {%- if section.settings.nav_contact_url != blank -%}
+      <a class="info-nav__tab{% if current == 'contact' %} is-active{% endif %}" href="{{ section.settings.nav_contact_url }}">Contactez nous</a>
+    {%- endif -%}
+    {%- if section.settings.nav_faq_url != blank -%}
+      <a class="info-nav__tab{% if current == 'faq' %} is-active{% endif %}" href="{{ section.settings.nav_faq_url }}">Aide &amp; FAQ</a>
+    {%- endif -%}
+    {%- if section.settings.nav_terms_url != blank -%}
+      <a class="info-nav__tab{% if current == 'terms' %} is-active{% endif %}" href="{{ section.settings.nav_terms_url }}">Conditions d'utilisation</a>
+    {%- endif -%}
+    {%- if section.settings.nav_returns_url != blank -%}
+      <a class="info-nav__tab{% if current == 'returns' %} is-active{% endif %}" href="{{ section.settings.nav_returns_url }}">Retours &amp; échanges</a>
+    {%- endif -%}
+    {%- if section.settings.nav_privacy_url != blank -%}
+      <a class="info-nav__tab{% if current == 'privacy' %} is-active{% endif %}" href="{{ section.settings.nav_privacy_url }}">Confidentialité</a>
+    {%- endif -%}
+  </nav>
+
+  <div class="info-page-width" style="padding-left:0;padding-right:0;">
+    <div class="info-hero__body">
+      {%- if section.settings.kicker != blank -%}
+        <div class="info-hero__kicker">{{ section.settings.kicker }}</div>
+      {%- endif -%}
+      <h1 class="info-hero__title">{{ section.settings.title }}</h1>
+      <div class="info-hero__rule"></div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "label": "Info page: Header",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "current_page",
+      "label": "This page is",
+      "options": [
+        { "value": "about", "label": "À propos" },
+        { "value": "payment", "label": "Méthodes de payement" },
+        { "value": "shipping", "label": "Expédition" },
+        { "value": "contact", "label": "Contactez nous" },
+        { "value": "faq", "label": "Aide & FAQ" },
+        { "value": "terms", "label": "Conditions d'utilisation" },
+        { "value": "returns", "label": "Retours & échanges" },
+        { "value": "privacy", "label": "Confidentialité" }
+      ],
+      "default": "about",
+      "info": "Highlights the matching tab in the nav row above the title."
+    },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Qui sommes-nous" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Ravello, en deux mots." },
+    {
+      "type": "header",
+      "content": "Navigation links",
+      "info": "Fill these in once you've created each Page in the admin and assigned it the matching template. Leave blank to hide a tab."
+    },
+    { "type": "url", "id": "nav_about_url", "label": "À propos link" },
+    { "type": "url", "id": "nav_payment_url", "label": "Méthodes de payement link" },
+    { "type": "url", "id": "nav_shipping_url", "label": "Expédition link" },
+    { "type": "url", "id": "nav_contact_url", "label": "Contactez nous link" },
+    { "type": "url", "id": "nav_faq_url", "label": "Aide & FAQ link" },
+    { "type": "url", "id": "nav_terms_url", "label": "Conditions d'utilisation link" },
+    { "type": "url", "id": "nav_returns_url", "label": "Retours & échanges link" },
+    { "type": "url", "id": "nav_privacy_url", "label": "Confidentialité link" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,75 @@
+{{ 'section-info-pages.css' | asset_url | stylesheet_tag }}
+
+<div class="color-background-1">
+  <div class="info-page-width">
+    <div class="info-section">
+      {%- if section.settings.intro != blank -%}
+        <p class="info-lede">{{ section.settings.intro }}</p>
+      {%- endif -%}
+
+      {%- assign steps = section.blocks | where: 'type', 'step' -%}
+      {%- if steps.size > 0 -%}
+        <div class="info-grid">
+          {%- for block in steps -%}
+            <div class="info-cell" {{ block.youcan_attributes }}>
+              <div class="info-cell__value">{{ block.settings.number }}</div>
+              <div class="info-cell__title">{{ block.settings.title }}</div>
+              <div class="info-cell__desc">{{ block.settings.description }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.sub_heading != blank or section.blocks.size > steps.size -%}
+        <div class="info-sub">
+          {%- if section.settings.sub_heading != blank -%}
+            <h2>{{ section.settings.sub_heading }}</h2>
+          {%- endif -%}
+          {%- assign bullets = section.blocks | where: 'type', 'bullet' -%}
+          {%- if bullets.size > 0 -%}
+            <ul class="info-bullets">
+              {%- for block in bullets -%}
+                <li {{ block.youcan_attributes }}>{{ block.settings.text }}</li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "label": "Info page: Steps + bullets",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro paragraph",
+      "default": "<p>Ravello fonctionne au paiement à la livraison. Vous commandez sans payer en ligne et vous réglez le livreur au moment de la réception.</p>"
+    },
+    { "type": "text", "id": "sub_heading", "label": "Second heading", "default": "Bon à savoir" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "label": "Step",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Vous commandez" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Nom, téléphone, ville et adresse. Aucun moyen de paiement n'est demandé." }
+      ]
+    },
+    {
+      "type": "bullet",
+      "label": "Bullet point",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Le montant affiché sur la fiche produit est le montant final : la livraison est gratuite." }
+      ]
+    }
+  ]
+}
+{% endschema %}

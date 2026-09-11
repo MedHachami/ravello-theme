@@ -1,0 +1,56 @@
+{{ 'section-info-pages.css' | asset_url | stylesheet_tag }}
+
+<div class="color-background-1">
+  <div class="info-page-width">
+    <div class="info-section" style="max-width:820px;">
+      {%- if section.settings.intro != blank -%}
+        <p style="font-size:16px;line-height:1.55;margin:0;color:rgba(var(--color-foreground),0.85);">{{ section.settings.intro }}</p>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'term_item' -%}
+          <div class="info-term-item" {{ block.youcan_attributes }}>
+            <h2>{{ block.settings.heading }}</h2>
+            <p>{{ block.settings.body }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if section.settings.footnote != blank -%}
+        <div class="info-footnote">{{ section.settings.footnote }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "label": "Info page: Terms / Privacy",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro paragraph",
+      "default": "<p>En passant commande sur Ravello, vous acceptez les conditions ci-dessous. Elles s'appliquent à toute commande passée sur ce site.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "footnote",
+      "label": "Footnote",
+      "default": "<p>Dernière mise à jour : <span style=\"color:#ec3013;\">[date]</span> — Ravello, <span style=\"color:#ec3013;\">[ville, Maroc]</span>.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "term_item",
+      "label": "Clause",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "1. Objet" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Ces conditions régissent la vente des produits proposés sur le site Ravello aux clients situés au Maroc. Toute commande implique leur acceptation sans réserve." }
+      ]
+    }
+  ]
+}
+{% endschema %}

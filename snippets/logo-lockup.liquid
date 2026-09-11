@@ -1,0 +1,11 @@
+{%- comment -%}
+  Renders the Ravello wordmark used when no image logo is uploaded in theme settings.
+  Accepts: heading_tag (boolean) - unused, kept for caller symmetry.
+{%- endcomment -%}
+<span class="ravello-logo">
+  <span class="ravello-logo__mark" aria-hidden="true">{{ store.name | slice: 0, 1 | upcase | default: 'R' }}</span>
+  <span class="ravello-logo__text">
+    <span class="ravello-logo__name">{{ store.name | default: 'Ravello' }}</span>
+    <span class="ravello-logo__tagline">Électronique &amp; Maison</span>
+  </span>
+</span>

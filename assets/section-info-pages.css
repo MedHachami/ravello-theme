@@ -1,0 +1,354 @@
+/* Shared styles for the Ravello "info pages" sections:
+   info-hero, info-about, info-steps, info-shipping-table,
+   info-contact, info-faq, info-terms, info-stats-block. */
+
+.info-page-width {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media screen and (max-width: 749px) {
+  .info-page-width {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* — cross-page tab nav — */
+.info-nav {
+  border-bottom: 2px solid rgb(var(--color-foreground));
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.info-nav__tab {
+  padding: 13px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+  background: rgb(var(--color-background));
+  border-right: 2px solid rgba(var(--color-foreground), 0.15);
+}
+
+.info-nav__tab:hover {
+  background: rgba(var(--color-foreground), 0.05);
+}
+
+.info-nav__tab.is-active {
+  background: rgb(var(--color-link));
+  color: #fff;
+}
+
+/* — hero header (kicker + title + rule) — */
+.info-hero__body {
+  padding: 48px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 900px;
+}
+
+.info-hero__kicker {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(var(--color-link));
+}
+
+.info-hero__title {
+  font-family: var(--font-heading-family);
+  font-size: clamp(32px, 4.6vw, 54px);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  margin: 0;
+}
+
+.info-hero__rule {
+  height: 2px;
+  background: rgb(var(--color-foreground));
+  margin-top: 14px;
+}
+
+@media screen and (max-width: 749px) {
+  .info-hero__body {
+    padding: 32px 20px 12px;
+  }
+}
+
+/* — generic section spacing — */
+.info-section {
+  padding: 8px 40px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+@media screen and (max-width: 749px) {
+  .info-section {
+    padding: 8px 20px 40px;
+  }
+}
+
+.info-lede {
+  font-size: 17px;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 70ch;
+}
+
+.info-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.info-sub h2 {
+  font-family: var(--font-heading-family);
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.info-bullets {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(var(--color-foreground), 0.85);
+}
+
+/* — bordered "seam" grid: dark background showing through 2px gaps — */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2px;
+  background: rgb(var(--color-foreground));
+  border: 2px solid rgb(var(--color-foreground));
+}
+
+.info-grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  background: none;
+  border: none;
+}
+
+.info-cell {
+  background: rgb(var(--color-background));
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-cell--tight {
+  padding: 18px 20px;
+  gap: 3px;
+}
+
+.info-cell__value {
+  font-family: var(--font-heading-family);
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+  color: rgb(var(--color-link));
+}
+
+.info-cell__value--sm {
+  font-size: 28px;
+}
+
+.info-cell__title {
+  font-family: var(--font-heading-family);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.info-cell__desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+.info-cell__label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.55);
+}
+
+/* — about page — */
+.info-about {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.info-about p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(var(--color-foreground), 0.85);
+  margin: 0;
+}
+
+.info-about p:first-child {
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgb(var(--color-foreground));
+}
+
+/* — table (shipping) — */
+.info-table-wrap {
+  border: 2px solid rgb(var(--color-foreground));
+  overflow-x: auto;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.info-table th {
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 2px solid rgb(var(--color-foreground));
+  font-family: var(--font-heading-family);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.info-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.2);
+}
+
+.info-table tr:last-child td {
+  border-bottom: none;
+}
+
+.info-table .accent {
+  color: rgb(var(--color-link));
+}
+
+/* — FAQ — */
+.info-faq-item {
+  border-bottom: 2px solid rgba(var(--color-foreground), 0.15);
+  padding: 22px 0;
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.info-faq-item__n {
+  font-family: var(--font-heading-family);
+  font-size: 15px;
+  font-weight: 900;
+  color: rgb(var(--color-link));
+  flex: none;
+  width: 32px;
+  padding-top: 2px;
+}
+
+.info-faq-item__body {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.info-faq-item__q {
+  font-family: var(--font-heading-family);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.info-faq-item__a {
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+/* — terms / privacy — */
+.info-term-item {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.info-term-item h2 {
+  font-family: var(--font-heading-family);
+  font-size: 19px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.info-term-item p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+.info-footnote {
+  border-top: 2px solid rgb(var(--color-foreground));
+  padding-top: 16px;
+  font-size: 13px;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+.info-footnote .accent {
+  color: rgb(var(--color-link));
+}
+
+/* — contact — */
+.info-contact-form {
+  border: 2px solid rgb(var(--color-foreground));
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.info-contact-form h2 {
+  font-family: var(--font-heading-family);
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.info-contact-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-contact-form .field__legend {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+.info-contact-status {
+  font-size: 13px;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+.info-contact-status.is-error {
+  color: rgb(var(--color-link));
+}

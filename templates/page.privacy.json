@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "info_hero": {
+      "type": "info-hero",
+      "settings": {
+        "current_page": "privacy",
+        "kicker": "Légal",
+        "title": "Politique de confidentialité."
+      }
+    },
+    "info_privacy": {
+      "type": "info-terms",
+      "settings": {
+        "intro": "<p>Nous collectons le minimum d'informations nécessaires pour préparer, confirmer et livrer votre commande. Rien de plus.</p>",
+        "footnote": "<p>Pour exercer vos droits, écrivez à <span style=\"color:#ec3013;\">[contact@…]</span>.</p>"
+      },
+      "blocks": {
+        "term-1": {
+          "type": "term_item",
+          "settings": {
+            "heading": "Données collectées",
+            "body": "Nom, numéro de téléphone, ville et adresse de livraison. Ces informations sont saisies par vous au moment de la commande et servent uniquement à la traiter."
+          }
+        },
+        "term-2": {
+          "type": "term_item",
+          "settings": {
+            "heading": "Utilisation",
+            "body": "Nous utilisons vos données pour confirmer la commande, préparer le colis, organiser la livraison et vous contacter en cas de problème. Nous ne vendons ni ne louons vos données."
+          }
+        },
+        "term-3": {
+          "type": "term_item",
+          "settings": {
+            "heading": "Partage",
+            "body": "Votre nom, téléphone et adresse sont transmis au transporteur chargé de la livraison. C'est le seul partage effectué, et il est strictement limité à cet usage."
+          }
+        },
+        "term-4": {
+          "type": "term_item",
+          "settings": {
+            "heading": "Conservation",
+            "body": "Les informations de commande sont conservées le temps nécessaire au suivi de la vente et au traitement d'un éventuel retour, puis archivées."
+          }
+        },
+        "term-5": {
+          "type": "term_item",
+          "settings": {
+            "heading": "Vos droits",
+            "body": "Vous pouvez demander l'accès, la correction ou la suppression de vos données à tout moment en nous contactant. Nous répondons sous deux jours ouvrés."
+          }
+        },
+        "term-6": {
+          "type": "term_item",
+          "settings": {
+            "heading": "Cookies",
+            "body": "Le site utilise des cookies techniques nécessaires au fonctionnement du panier, et des cookies de mesure d'audience. Vous pouvez les désactiver depuis votre navigateur."
+          }
+        }
+      },
+      "order": ["term-1", "term-2", "term-3", "term-4", "term-5", "term-6"]
+    }
+  },
+  "order": ["info_hero", "info_privacy"]
+}
